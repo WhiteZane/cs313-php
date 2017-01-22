@@ -1,0 +1,45 @@
+/* Main.css for CS313 styles */
+nav{
+    margin-top: 2%;
+    
+}
+body{
+    width:900px;
+    margin: 0 auto;
+    background-color: #b8dfff;
+}
+main{
+    background-color:#93B2CC;
+    border-radius: .5em;
+}
+figure img{
+     border: 2px solid #b8dfff;
+    border-radius: .5em;
+}
+
+footer{
+    margin-top:5%;
+    margin-bottom: 2%;
+    font-size: 14px;
+    background-color: black;
+    border-radius: .2em;
+    padding:1%;
+}
+footer li{
+    list-style-type:none;
+    display:inline;
+    margin-right: 2%;
+    
+}
+footer a:hover{
+    color:white;
+}
+
+h1,h2,h3,h4,h5,h6{
+    font-family: "Verdana", sans-serif;
+}
+* {
+    font-size:16px;
+    font-family: "Georgia", serif;
+}
+
