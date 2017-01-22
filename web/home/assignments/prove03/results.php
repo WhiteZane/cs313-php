@@ -5,7 +5,7 @@
 // value that is submitted such as "cs" as opposed to "Computer Science",
 // then in PHP we could process that value and determine the exact
 // presentation text to render.
-setcookie("submitted", "yes");
+setcookie("submit", "yes");
 $temple = $temple = htmlspecialchars($_POST["temple"]);
 $lang = $lang = htmlspecialchars($_POST["lang"]);
 $disneyChar = $disneyChar = htmlspecialchars($_POST["disneyChar"]);

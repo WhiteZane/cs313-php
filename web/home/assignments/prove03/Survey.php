@@ -3,7 +3,7 @@
     session_start();
     
 	if ($_COOKIE["submit"] == "yes") {
-		header('Location: http://lit-refuge-30680.herokuapp.com/home/assignments/prove/results.php');
+		header('Location: http://lit-refuge-30680.herokuapp.com/home/assignments/prove03/results.php');
 			exit(); // for security use exit function after redirect
 	}
 ?>
