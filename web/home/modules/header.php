@@ -14,7 +14,7 @@ $name = "Zane White" ;
                       <ul class="dropdown-menu">
                         <li><a href="http://lit-refuge-30680.herokuapp.com/home/assignments/index.php">Home</a></li>
                         <li><a href="#">Assignment 2</a></li>
-                        <li><a href="http://lit-refuge-30680.herokuapp.com/home/assignments/prove/survey.php">Assignment 3</a></li>
+                        <li><a href="http://lit-refuge-30680.herokuapp.com/home/assignments/prove03/survey.php">Assignment 3</a></li>
                       </ul>
                     </li>
                     
