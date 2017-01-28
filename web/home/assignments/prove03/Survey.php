@@ -5,10 +5,14 @@
 	if ($_COOKIE["submit"] == "yes") {
 		header('Location: http://lit-refuge-30680.herokuapp.com/home/assignments/prove03/results.php');
 <<<<<<< HEAD
+<<<<<<< HEAD
 			exit(); 
 =======
 			exit(); // for security use exit function after redirect
 >>>>>>> 984b8c07fc2e6adea532f810efd570c2e6e15b05
+=======
+			exit(); 
+>>>>>>> 97481a2de71ba28e5e631b2299c72cbf58bed2ef
 	}
 ?>
 
