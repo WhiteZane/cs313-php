@@ -28,7 +28,7 @@ catch (PDOException $ex) {
  die();
 }
 
-foreach ($db->query('SELECT now()') as $row)
+foreach ($db->query('SELECT * FROM rental') as $row)
 {
  print "<p>$row[0]</p>\n\n";
 }
