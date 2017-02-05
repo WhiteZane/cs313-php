@@ -25,9 +25,10 @@ try {
 catch (PDOException $ex) {
  print "<p>error: $ex->getMessage() </p>\n\n";
  die();
+
 }
 
-
+ $name = $_POST['title'];
 
 ?>
                 
