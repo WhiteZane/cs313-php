@@ -54,7 +54,7 @@ catch (PDOException $ex) {
         
         <a href="allMovies.php"> click </a><br><br>
             <?php    // Prepare statement
-                    $search = $db->prepare("SELECT rentalid, movietitle,genre_fk, rating_fk, description, borrowed, owner FROM rental WHERE movietitle LIKE ?");
+                    $search = $db->prepare("SELECT rentalid, movietitle,genre_fk, rating_fk, description, borrowed, owner FROM rental WHERE lower(movietitle) LIKE ?");
                     // Execute with wildcards
                     $search->execute(array("%$name%"));
                     // Echo results
