@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <?php
+=======
+?php
+>>>>>>> 6531ea0f2b2d7c403d781e897b6ae1a4db33c752
 
 // default Heroku Postgres configuration URL
 $dbUrl = getenv('DATABASE_URL');
