@@ -30,6 +30,7 @@ require("database/database.php");
                         </form>
 
                 <h1> All current Movies in Database </h1>
+				<h3> To easily search for you movie press ctrl + f, for a search menu</h3>
                 <p>(If the movie was just updated it will appear at the end of the list.)</p>
                         <?php 
                         
