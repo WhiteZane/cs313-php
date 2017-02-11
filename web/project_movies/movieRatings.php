@@ -1,33 +1,8 @@
 <?php
-
-// default Heroku Postgres configuration URL
-$dbUrl = getenv('DATABASE_URL');
-
-if (empty($dbUrl)) {
- // example localhost configuration URL with postgres username and a database called cs313db
- $dbUrl = "postgres://postgres:password@localhost:5432/cs313db";
-}
-
-$dbopts = parse_url($dbUrl);
-
-
-$dbHost = $dbopts["host"];
-$dbPort = $dbopts["port"];
-$dbUser = $dbopts["user"];
-$dbPassword = $dbopts["pass"];
-$dbName = ltrim($dbopts["path"],'/');
-
-
-
-try {
- $db = new PDO("pgsql:host=$dbHost;port=$dbPort;dbname=$dbName", $dbUser, $dbPassword);
-}
-catch (PDOException $ex) {
- print "<p>error: $ex->getMessage() </p>\n\n";
- die();
-}
-
-$rating = $_POST['rating'];
+     
+    require("database/database.php"); 
+    $rateMovie = $_POST['rating'];
+    
 
 ?>
 
@@ -42,21 +17,26 @@ $rating = $_POST['rating'];
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	</head>
         
-        <?php include "modules/header.php" ?>
+        <?php include "modules/header.php"; ?>
     <body>
         
         <main>
-            <?php foreach ($db->query("SELECT rentalid, movietitle, genre_fk, rating_fk, description, borrowed, owner FROM rental WHERE rating_fk = '$rating' ") as $row)
-		{
-		  echo '<b>'. $row['movietitle'].'<br>';
-                          echo ' ' . $row['description'] . '<br>';
-                                if ($row['borrowed'] == '0'){
-                                    echo 'False';}
-                                echo ' <br></b>' . $row['owner'];
-                                echo '<br/>';
-                        
-                        
-		} ?> 
+            <?php 
+                    if($rateMovie == 0){
+                    echo "<p>Nothing here</p>";
+                    }
+                    foreach ($db->query("SELECT rentalid, movietitle, genre_fk, rating_fk, description, borrowed, owner FROM rental WHERE rating_fk = '$rateMovie' ") as $row)
+                    {
+                      echo '<b>'. $row['movietitle'].'<br>';
+                              echo ' ' . $row['description'] . '<br>';
+                                    if ($row['borrowed'] == '0'){
+                                        echo 'False';}
+                                    echo ' <br></b>' . $row['owner'];
+                                    echo '<br/>';
+
+
+                    } 
+                ?> 
         
 		</main>
 

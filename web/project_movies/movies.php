@@ -1,35 +1,8 @@
 <?php
-
-// default Heroku Postgres configuration URL
-$dbUrl = getenv('DATABASE_URL');
-
-if (empty($dbUrl)) {
- // example localhost configuration URL with postgres username and a database called cs313db
- $dbUrl = "postgres://postgres:password@localhost:5432/cs313db";
-}
-
-$dbopts = parse_url($dbUrl);
-
-
-$dbHost = $dbopts["host"];
-$dbPort = $dbopts["port"];
-$dbUser = $dbopts["user"];
-$dbPassword = $dbopts["pass"];
-$dbName = ltrim($dbopts["path"],'/');
-
-
-
-try {
- $db = new PDO("pgsql:host=$dbHost;port=$dbPort;dbname=$dbName", $dbUser, $dbPassword);
-}
-catch (PDOException $ex) {
- print "<p>error: $ex->getMessage() </p>\n\n";
- die();
-
-}
-
- $name = $_POST['title'];
-
+	
+ 
+    require("database/database.php");            
+    $name = $_POST['title'];
 ?>
                 
 
@@ -59,7 +32,7 @@ catch (PDOException $ex) {
                     $search->execute(array("%$name%"));
                     // Echo results
                     foreach($search as $s) {
-                      echo '<table style="width:40%">' . '<tr><th> movie title </th> <th> desc. </th> <th>Owner </th></tr><tr><th>' .$s['movietitle'] . '</th> <th>' .
+                      echo '<table style="width:50%">' . '<tr><th> Movie Title </th> <th> Desc. </th> <th>Owner </th></tr><tr><th>' .$s['movietitle'] . '</th> <th>' .
                               $s['description'] . '</th> <th>' . $s['borrowed'].'<th>'. $s['owner'].'</th></tr> </table>' ;
                       
                     }

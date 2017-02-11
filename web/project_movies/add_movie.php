@@ -1,4 +1,5 @@
 <?php
+    require("database/database.php");   
 ?>
 <!DOCTYPE html>
 <html>
@@ -11,41 +12,50 @@
     <body>
         <main>
          <?php include "modules/header.php" ?>
-        <h1> Add A movie to the database </h1>
-        <form method="POST" action="movies.php">
-                             Movie Title:<input name="newTitle" type="text">
+            
+        <h1> Add a movie to the database </h1>
+        
+        <form action="inputMovie.php" method="post">
+            
+        Movie Title: <input type="text" name="newTitle"><br>
+        
+        Owner: <input type="text" name="newOwner"><br>
+        
+            <?php
+                    $statement = $db->prepare('SELECT ratingId, rating FROM ratings');
+                    $statement->execute();
+                    // Go through each genre make a option with value
+                    echo "Rating : <select name='newRating'>";
+                    
+                    while ($rowRate = $statement->fetch(PDO::FETCH_ASSOC)) {
+                        $idRate = $rowRate['ratingid'];
+                        $rateName = $rowRate['rating'];
 
-                            <br>
-            Select Rating: <select name="newRating">
-                                <option value="1">G</option>
-                                <option value="2">PG</option>
-                                <option value="3">PG-13</option>
-                                <option value="4">TV-14</option>
-                                <option value="5">TV-MA</option>
-                                <option value="6">Not Rated</option>
-                            </select><br>
-            Select Genre: <select name="genre">
-                                <option value="1">Action</option>
-                                <option value="2">Adventure</option>
-                                <option value="3">Animation</option>
-                                <option value="4">Comedy</option>
-                                <option value="5">Documentary</option>
-                                <option value="6">Drama</option>
-                                <option value="7">Family</option>
-                                <option value="8">Fantasy</option>
-                                <option value="9">Horror</option>
-                                <option value="10">Mystery</option>
-                                <option value="11">Romance</option>
-                                <option value="12">Sci-Fi</option>
-                                <option value="13">Thriller</option>
-                                <option value="14">Western</option>
+                        echo "<option value='$idRate'>$rateName</option><br />";
+                    }
+                    echo "</select><br>";
+            ?>
+            <?php
+                    $statement2 = $db->prepare('SELECT genreId, genreCategory FROM genre');
+                    $statement2->execute();
+                    // Go through each genre make a option with value
+                    echo "Genre: <select name='newGenre'>";
+                    while ($row = $statement2->fetch(PDO::FETCH_ASSOC)) {
+                        $id = $row['genreid'];
+                        $category = $row['genrecategory'];
 
-                            </select><br>
-                            Description:<input name="newDesc" type="text"><br>
-                            Owner:<input name="newOwner" type="text">
-                            <br>
-                            <input type="submit">
-                        </form>
+                        echo "<option value='$id'>$category</option><br />";
+                    }
+                    echo "</select>";
+            ?>
+        <br><br>
+        <label> Movie Description </label><br>
+            <textarea name="newDesc" rows="5" cols="50"></textarea>
+        
+        
+        
+        <input type="submit">
+        </form>
         </main>
     </body>
 
