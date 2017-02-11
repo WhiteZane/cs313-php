@@ -30,7 +30,7 @@ require("database/database.php");
                         </form>
 
                 <h1> All current Movies in Database </h1>
-                <p>If movie was just updated it will appear at the end of the list.</p>
+                <p>(If the movie was just updated it will appear at the end of the list.)</p>
                         <?php 
                         
                         foreach ($db->query('SELECT rental.rentalid, rental.movietitle, rental.description, rental.borrowed, rental.owner, genre.genrecategory, ratings.rating
