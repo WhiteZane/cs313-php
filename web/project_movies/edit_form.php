@@ -47,10 +47,10 @@ $owner = $movieInfo['owner'];
             <input type="hidden" name='upId'
              value="<?php echo $editMovie ?>" >
             Movie Title: <input type="text" name="upTitle" autofocus=""
-                                value="<?php echo $title ?>"><br>
+                                value="<?php echo $title ?>" required><br>
         
             Owner: <input type="text" name="upOwner"
-                          value="<?php echo $owner ?>"><br>
+                          value="<?php echo $owner ?>" required><br>
         
             <?php
                     $statement2 = $db->prepare('SELECT ratingId, rating FROM ratings');

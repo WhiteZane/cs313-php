@@ -28,9 +28,9 @@
 
                 <form action="inputMovie.php" method="post">
 
-                Movie Title: <input type="text" name="newTitle"><br>
+                Movie Title: <input type="text" name="newTitle" required><br>
 
-                Owner: <input type="text" name="newOwner"><br>
+                Owner: <input type="text" name="newOwner" required><br>
 
                     <?php
                             $statement = $db->prepare('SELECT ratingId, rating FROM ratings');
