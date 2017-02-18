@@ -1,7 +1,7 @@
 <?php
     require("database/database.php");
     
-    $deleteMovie = $_POST['movieId'];
+    $deleteMovie = filter_var($_POST['movieId'], FILTER_SANITIZE_STRING);
     print "this is my value" . $deleteMovie;
     
     

@@ -2,7 +2,7 @@
 	
  
     require("database/database.php");            
-    $name = $_POST['title'];
+    $name = filter_var($_POST['title'], FILTER_SANITIZE_STRING);
 ?>
                 
 
@@ -10,16 +10,21 @@
 
 <html>
     <head>
-        <link rel="stylesheet" href="main.css">
+        
         <meta charset="UTF-8">
         <title> Search </title>
         <meta name="author" content="Zane White">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="main.css">
 	</head>
         
         <?php include "modules/header.php" ?>
-    <body>
         
+    <body>
+        <div class="container-fluid text-center">
         <main>
             <h1> Movie Rental Database </h1>
 	<br>
@@ -27,22 +32,32 @@
         
         <a href="allMovies.php"> click </a><br><br>
             <?php    // Prepare statement
-                    $search = $db->prepare("SELECT rentalid, movietitle,genre_fk, rating_fk, description, borrowed, owner FROM rental WHERE lower(movietitle) LIKE ?");
+                    $search = $db->prepare('SELECT rental.rentalid, rental.movietitle, rental.description, rental.borrowed, rental.owner, genre.genrecategory, ratings.rating
+                                                    FROM rental
+                                                    INNER JOIN genre on rental.genre_fk=genre.genreid
+                                                    INNER JOIN ratings on rental.rating_fk=ratings.ratingid
+                                                    Where lower(rental.movietitle) Like ?');
                     // Execute with wildcards
                     $search->execute(array("%$name%"));
                     // Echo results
+                    print '<table>';
                     foreach($search as $s) {
-                      echo '<table style="width:50%">' . '<tr><th> Movie Title </th> <th> Desc. </th> <th>Owner </th></tr><tr><th>' .$s['movietitle'] . '</th> <th>' .
-                              $s['description'] . '</th> <th>' . $s['borrowed'].'<th>'. $s['owner'].'</th></tr> </table>' ;
+                      
+                        echo '<tr><th> Movie Title </th> <th> Desc. </th> <th>Genre</th><th>Rating</th>'
+                            . '<th>Borrowed</th> <th>Owner </th></tr>';
+                            print "<tr><th>".$s['movietitle'] . "</th>" ;
+                            print "<th>".$s['description'] . "</th>";
+                            print "<th>".$s['genrecategory'] . "</th>";
+                            print "<th>".$s['rating'] . "</th>";
+                            if ($s['borrowed'] == '0'){
+                            print "<th>False</th>";}
+                            else {print "<th>True</th>";}
+                            print "<th>".$s['owner'] . 
+                            "</th> </tr> <tr class='blank_row'><td class='blank_row'>&nbsp;</td></tr>";
                       
                     }
-                     print "<b>".$row['movietitle']."<br></b>";
+                    print "</table>";
                      
-                          echo ' ' . $row['description'] . '<br>';
-                                if ($row['borrowed'] == '0'){
-                                    echo 'False';}
-                                echo ' <br></b>' . $row['owner'];
-                                echo '<br/>';
                     
                     
                 
@@ -50,8 +65,9 @@
                 ?>
         
         </main>
-
-        <footer></footer>
+        </div>
+        <?php include "modules/footer.php" ?>
+        
     </body>
 </html>
 

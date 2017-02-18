@@ -6,22 +6,28 @@
 
 <html>
     <head>
-        <link rel="stylesheet" href="main.css">
+        
         <meta charset="UTF-8">
         <title> Family Movies </title>
         <meta name="author" content="Zane White">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="main.css">
     </head>
 
 <?php include "modules/header.php" ?>
     <body>
-
+        <div class="container-fluid">
         <main>
+            
             <h1> Movie Rental Database </h1>
             <br>
-            <p> Click here to browse entire movie Database</p>
-            <br>
-            <a href="allMovies.php"> click </a><br>
+            <p>To browse entire movie Database</p>
+            <a href="allMovies.php"> Click here </a> 
+            
+            
+             
             
             <h3>Search Movies by Title</h3>
             
@@ -68,10 +74,14 @@
                     echo "</select>";
                     ?>
                     <input type="submit">
+                    
                 </form>
-
+            
+                
         </main>
+        </div>
+        <?php include "modules/footer.php" ?>
 
-        <footer></footer>
+        
     </body>
 </html>

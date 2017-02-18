@@ -1,7 +1,7 @@
 <?php
 require("database/database.php"); 
 
-$editMovie = $_POST['movieId'];
+$editMovie = filter_var($_POST['movieId'], FILTER_SANITIZE_STRING);
 
 //echo $editMovie;
 $movieInfo;
@@ -24,23 +24,33 @@ $owner = $movieInfo['owner'];
         <title>
             Edit Movie
         </title>
-         <link rel="stylesheet" href="main.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="main.css">
+         
+         
+         
+        
     </head>
+    <?php include "modules/header.php" ?>
+    
     <body>
+        <div class="container-fluid">
         <main>
-         <?php include "modules/header.php" ?>
-            
+         
         <h1> Update a movie in the database </h1>
         
         <form action="updateMovie.php" method="post">
             
             <input type="hidden" name='upId'
              value="<?php echo $editMovie ?>" >
-            Movie Title: <input type="text" name="upTitle" 
-                                value="<?php echo htmlspecialchars($title) ?>"><br>
+            Movie Title: <input type="text" name="upTitle" autofocus=""
+                                value="<?php echo $title ?>"><br>
         
             Owner: <input type="text" name="upOwner"
-                          value="<?php echo htmlspecialchars($owner) ?>"><br>
+                          value="<?php echo $owner ?>"><br>
         
             <?php
                     $statement2 = $db->prepare('SELECT ratingId, rating FROM ratings');
@@ -75,14 +85,17 @@ $owner = $movieInfo['owner'];
                 <option value='true'>True</option>
             </select><br><br>
         <label> Movie Description </label><br>
-            <textarea name="upDesc" rows="5" cols="50"><?php echo htmlspecialchars(
-                          $desc); ?></textarea>
+            <textarea name="upDesc" rows="5" cols="50"><?php echo
+                    $desc; ?></textarea><br> <br>
         
         
         
         <input type="submit">
         </form>
+        
         </main>
+        </div>
+        <?php include "modules/footer.php" ?>
     </body>
 
 </html>

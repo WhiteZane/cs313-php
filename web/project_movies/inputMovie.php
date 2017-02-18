@@ -1,15 +1,15 @@
 <?php
     require("database/database.php"); 
     
-    $addTitle = $_POST["newTitle"];
+    $addTitle = filter_var($_POST["newTitle"], FILTER_SANITIZE_STRING);
         echo $addTitle;
-    $addOwner = $_POST["newOwner"];
+    $addOwner = filter_var($_POST["newOwner"], FILTER_SANITIZE_STRING);
         echo $addOwner;
-    $addRating = $_POST["newRating"];
+    $addRating = filter_var($_POST["newRating"], FILTER_SANITIZE_STRING);
         echo $addRating;
-    $addGenre = $_POST["newGenre"];
+    $addGenre = filter_var($_POST["newGenre"], FILTER_SANITIZE_STRING);
         echo $addGenre;
-    $addDesc = $_POST["newDesc"];
+    $addDesc = filter_var($_POST["newDesc"], FILTER_SANITIZE_STRING);
         echo $addDesc;
     $borrowed = 0;
     
